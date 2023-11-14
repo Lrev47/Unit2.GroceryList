@@ -11,7 +11,7 @@ const items = [
 
 const cart = [];
 
-// ------------------ Complete the functions written below ------------------------------ //
+// ------------------ rComplete the functions written below ------------------------------ //
 
 function logItemNames() {
   //TODO: use the .forEach() method to log out the name of each item
