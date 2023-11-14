@@ -13,19 +13,35 @@ const cart = [];
 
 // ------------------ rComplete the functions written below ------------------------------ //
 
+/**
+ * items is an array of objects
+ * for each iterates through the array (arrow function), every iteration, console log the item.name.
+ */
+
 function logItemNames() {
-  //TODO: use the .forEach() method to log out the name of each item
+  items.forEach(item => {
+    console.log(item.name);
+  });
 }
+  //TODO: use the .forEach() method to log out the name of each item
 
 /**
+ * variable called item, using .find, if item(array) is equal to or
+ * greater than. item.id(the key) that is === to id(argument)
+ * return item
  * @param {number} id
  * @returns {{id: number, name: string, price: number, category: string, inventory: number}} item
  */
 function findItemById(id) {
+  let item = items.find(item => item.id === id);
+  return item 
+};
   // TODO: Use the .find() method to return the item who's id matches the passed in id
-}
-
 /**
+ * 
+ * 
+ * 
+ * 
  * @returns {items[]} Returns a new array with capitalized names
  */
 function capitalizeNames() {
