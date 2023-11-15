@@ -43,17 +43,32 @@ function findItemById(id) {
  * 
  * 
  * @returns {items[]} Returns a new array with capitalized names
+ * 
+ * I was stuggling on this one, it's working but im not sure how it works
  */
 function capitalizeNames() {
+  const capitalizedItems = items.map(item => {
+    return {
+      ...item,
+      name: item.name.charAt(0).toUpperCase() + item.name.slice(1)
+    };
+  }
+  
+  );
+
+  return capitalizedItems;
+}
   // TODO:  Use the .map() and possibly .slice() methods and return a new items array with the item names capitalized
   // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
-}
+
 
 /**
  * @returns {number} the sum of all inventory items
  */
 
 function calculateTotalInventory() {
+
+  return items.reduce((total, item) => total + item.inventory, 0);
   // TODO Use the .reduce() method to return the total number of items in inventory
 }
 
@@ -61,6 +76,9 @@ function calculateTotalInventory() {
  * @returns {number} the total price of all inventory items combined
  */
 function calculateAllInventoryPrice() {
+
+
+  return items.reduce((totalPrice, item) => totalPrice + item.price * item.inventory, 0);
   // TODO Use the .reduce() method to return the total price of all the items in inventory
 }
 
@@ -69,6 +87,9 @@ function calculateAllInventoryPrice() {
  * @returns {number} the price of the item passed in
  */
 function getItemPriceByName(name) {
+
+  const item = items.find(item => item.name.toLowerCase() === name.toLowerCase());
+  return item ? item.price : "Item not found";
   // TODO: Use your knowledge of objects and arrays to get the price of the item passed in
 }
 
@@ -76,18 +97,39 @@ function getItemPriceByName(name) {
  * @param {categoryId} id of category to find
  * @returns {items[]} array of all items which belong to the given category
  */
-function filterItemsByCategoryId(categoryId) {
+function filterItemsByCategoryId(categoryId) {  
+
+  return items.filter(item =>  item.categoryId === categoryId);
   // TODO: use the .filter() method to filter out all items which don't belong the passed in category
 }
 
 function logCartItems() {
-  // TODO: Loop through your cart and use the indexes to log the names of all items in your cart
+          cart.forEach((itemId, index) => {
+          const item = findItemById(itemId);
+    if (item && item.name) {
+      console.log(`Item ${index + 1}: ${item.name}`);
+    } else {
+      console.log(`Item ${index + 1} not found or has no name`);
+    }
+  });
 }
+
+  // TODO: Loop through your cart and use the indexes to log the names of all items in your cart
+
 
 /**
  * @returns { number } returns the total price of items in your cart
  */
 function calculateTotalCartPrice() {
+  return cart.reduce((totalPrice, itemId) => {
+    const item = findItemById(itemId);
+               if (item && item.price) {
+               return totalPrice + item.price;
+    } else {
+             console.log(`Item with ID ${itemId} not found or has no price`);
+      return totalPrice;
+    }
+  }, 0);
   // TODO: Loop through your cart and return the total price of all items in your cart
 }
 
